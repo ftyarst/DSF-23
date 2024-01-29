@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Nilai Siswa</title>
+</head>
+<body>
+
+    <h2>Input Nilai Siswa</h2>
+
+    <form id="nilaiForm">
+        <label for="nilai">Masukkan nilai siswa:</label>
+        <input type="number" id="nilai" name="nilai" required>
+
+        <button type="button" onclick="hitungNilai()">Hitung Nilai</button>
+
+        <p id="hasil"></p>
+    </form>
+
+    <script>
+        function hitungNilai() {
+            var nilaiInput = document.getElementById("nilai").value;
+
+            if (isNaN(nilaiInput)) {
+                alert("Masukkan nilai yang valid (angka).");
+                return;
+            }
+
+            var nilai = parseFloat(nilaiInput);
+            var nilaiHuruf, jenisBilangan;
+
+            if (nilai >= 85 && nilai <= 100) {
+                nilaiHuruf = "A";
+            } else if (nilai >= 75 && nilai <= 84) {
+                nilaiHuruf = "B";
+            } else if (nilai >= 60 && nilai <= 74) {
+                nilaiHuruf = "C";
+            } else if (nilai >= 0 && nilai <= 59) {
+                nilaiHuruf = "D";
+            } else {
+                alert("Nilai tidak valid");
+                return;
+            }
+
+            jenisBilangan = nilai % 2 === 0 ? "genap" : "ganjil";
+
+            var hasilOutput = "Nilai angka: " + nilai + "<br>Nilai huruf: " + nilaiHuruf + "<br>Bilangan " + jenisBilangan;
+            document.getElementById("hasil").innerHTML = hasilOutput;
+        }
+    </script>
+
+</body>
+</html>
